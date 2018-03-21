@@ -1,0 +1,47 @@
+schema {
+ query : Query
+}
+
+type Query {
+	# This find by custormerId 
+    findByCustomerid(customer_id: Int, customer_id2: Int): [Customer]
+    # This find by operatorId 
+    findByOperatorid(operator_id: Int): [Customer]
+    
+    findBySubscriberId(subscriber_id: String): [Subscriber]
+    
+    findChargeDistributeById(charge_distributeId: Int): [ChargeDistribute]
+    
+    findCsmAccountById(charge_distributeId: Int): [CsmAccount]
+    
+    findCsmPayChannelId(csmPayChannelId: Int): [CsmPayChannel]
+}
+
+type Customer {
+	customerid	:	Int
+	operatorid	:	Int
+	
+}
+
+type Subscriber {
+	applicationId: String
+	businessEntityId: String
+}
+
+type ChargeDistribute {
+	agrLevel: String
+	agreementNo: String
+	applicationId: String
+}
+
+type CsmAccount {
+	acctBalPolicy: String
+	applicationId: String
+	billingCurrency: String
+}
+
+type CsmPayChannel {
+	applicationId: String
+	bankAcctNo: String
+	bankAcctType: String
+}
