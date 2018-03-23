@@ -14,6 +14,7 @@ public class SpringBootGraphqlApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootGraphqlApplication.class, args);
 		
-		//TODO: Test
+		
+		
 	}
 }
