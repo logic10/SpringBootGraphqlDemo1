@@ -97,7 +97,7 @@ type Customer {
 	customerId	:	Int
 	# This operator identification 
 	operatorId	:	Int
-	
+	subscribers: [Subscriber]
 }
 
 type Subscriber {
