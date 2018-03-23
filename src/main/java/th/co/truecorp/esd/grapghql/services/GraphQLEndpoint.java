@@ -3,8 +3,6 @@ package th.co.truecorp.esd.grapghql.services;
 import java.io.File;
 import java.io.IOException;
 
-import javax.servlet.annotation.WebServlet;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;

@@ -20,6 +20,6 @@ public class CustomerController {
 
 	@GetMapping("/customer/{id}")
 	ResponseEntity<List<Customer>> getCustomer(@PathVariable("id") int id) {
-        return new ResponseEntity<List<Customer>>(customerRepository.findByCustomerid(id), HttpStatus.OK);
+        return new ResponseEntity<List<Customer>>(customerRepository.findByCustomerId(id), HttpStatus.OK);
     }
 }

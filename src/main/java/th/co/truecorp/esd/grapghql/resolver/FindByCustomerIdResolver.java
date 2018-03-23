@@ -19,11 +19,11 @@ public class FindByCustomerIdResolver implements DataFetcher<List<Customer>>{
 	@Override
 	public List<Customer> get(DataFetchingEnvironment environment) {
 		// TODO Auto-generated method stub
-		int customer_id = environment.getArgument("customer_id");
+		int customer_id = environment.getArgument("customerId");
 		int customer_id2 = environment.getArgument("customer_id2");
 		System.out.println("customer_id2 = " + customer_id2);
 		
-        return customerRepository.findByCustomerid(customer_id);
+        return customerRepository.findByCustomerId(customer_id);
 	}
 
 	

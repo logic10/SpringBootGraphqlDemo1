@@ -18,9 +18,8 @@ public class CustomerResolver implements DataFetcher<List<Customer>>{
 	
 	@Override
 	public List<Customer> get(DataFetchingEnvironment environment) {
-		// TODO Auto-generated method stub
-		int customerid = environment.getArgument("customerid");
-        return customerRepository.findByCustomerid(customerid);
+		int customerId = environment.getArgument("customerId");
+		return customerRepository.findByCustomerId(customerId);
 	}
 
 }

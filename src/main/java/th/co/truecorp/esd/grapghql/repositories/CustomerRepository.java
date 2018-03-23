@@ -12,8 +12,8 @@ import org.springframework.stereotype.Repository;
 public interface CustomerRepository extends CrudRepository<Customer, Long>  {
 	    //Customer findOne(Long id);
 	    //List<Customer> findAll();
-	    List<Customer> findByCustomerid(int customerid);
-	    List<Customer> findByOperatorid(int operatorid);
+	    List<Customer> findByCustomerId(int customerid);
+	    List<Customer> findByOperatorId(int operatorid);
 	    //Customer save(Customer item);
 	    //void delete(Long id);
 	    

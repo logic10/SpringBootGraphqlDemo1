@@ -22,6 +22,7 @@ import graphql.schema.idl.RuntimeWiring;
 import graphql.schema.idl.SchemaGenerator;
 import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeDefinitionRegistry;
+import th.co.truecorp.esd.grapghql.resolver.FindByChargeDistibuteIdResolver;
 import th.co.truecorp.esd.grapghql.resolver.FindByCustomerIdResolver;
 import th.co.truecorp.esd.grapghql.resolver.FindByOperatorIdResolver;
 import th.co.truecorp.esd.grapghql.resolver.FindBySubscriberIdResolver;
@@ -40,6 +41,8 @@ public class GraphQLService {
 	@Autowired
 	private FindBySubscriberIdResolver findBySubscriberId;
 	
+	@Autowired
+	private FindByChargeDistibuteIdResolver chargeDistibuteIdResolver;
 	//FindBySubscriberIdResolver
 	private GraphQL graphQL;
 	private GraphQLSchema graphQLSchema;
@@ -62,8 +65,13 @@ public class GraphQLService {
 		Map<String, DataFetcher> dataFetcherMap = new HashMap<String, DataFetcher>();
 		dataFetcherMap.put("findByCustomerid", customerResolver);
 		dataFetcherMap.put("findByOperatorid", operatorResolver);
+
 		
 		dataFetcherMap.put("findBySubscriberId", findBySubscriberId);
+		dataFetcherMap.put("findChargeDistributeByTrackingId", chargeDistibuteIdResolver);
+		
+		dataFetcherMap.put("findCsmAccountById", chargeDistibuteIdResolver);
+		
 		return dataFetcherMap;
 	}
 

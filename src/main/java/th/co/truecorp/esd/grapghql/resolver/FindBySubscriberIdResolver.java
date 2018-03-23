@@ -19,12 +19,8 @@ public class FindBySubscriberIdResolver implements DataFetcher<List<Subscriber>>
 	
 	@Override
 	public List<Subscriber> get(DataFetchingEnvironment environment) {
-		// TODO Auto-generated method stub
 		Integer subscriber_id = Integer.parseInt( environment.getArgument("subscriber_id") );
-		
         return subscriberRepository.findBySubscriberNo(subscriber_id);
-        //return subscriberRepository.findByXXXX(subscriber_id);
 	}
 
-	
 }
