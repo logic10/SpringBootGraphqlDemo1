@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -280,9 +282,9 @@ public class Subscriber {
 	private BigDecimal trxId;
 
 	// bi-directional many-to-one association to Customer
-	// @ManyToOne
-	// @JoinColumn(name="CUSTOMER_ID")
-	// private Customer customer;
+	@ManyToOne
+	@JoinColumn(name="CUSTOMER_ID")
+	private Customer customer;
 
 	public String getApplicationId() {
 		return this.applicationId;

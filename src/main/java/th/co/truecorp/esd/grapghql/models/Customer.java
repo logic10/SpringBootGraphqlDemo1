@@ -1,12 +1,14 @@
 package th.co.truecorp.esd.grapghql.models;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name = "CUSTOMER")
@@ -253,6 +255,10 @@ public class Customer {
 	@Column(name = "SYS_UPDATE_DATE")
 	private String sysUpdateDate;
 
+	@javax.persistence.OneToMany
+	(mappedBy="customer")
+	private List<Subscriber> subscribers;
+	
 	public Customer() {
 	}
 
@@ -824,4 +830,12 @@ public class Customer {
 		this.sysUpdateDate = sysUpdateDate;
 	}
 
+	public List<Subscriber> getSubscribers() {
+		return this.subscribers;
+	}
+
+	public void setSubscribers(List<Subscriber> subscribers) {
+		this.subscribers = subscribers;
+	}	
+	
 }
