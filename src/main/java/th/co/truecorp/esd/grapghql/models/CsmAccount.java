@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 /*
 import model.CsmPayChannel;
@@ -45,7 +47,7 @@ public class CsmAccount {
 	@Column(name = "COLL_PUNISHMENT_LEVELS")
 	private String collPunishmentLevels;
 
-	//@Temporal(TemporalType.DATE)
+	// @Temporal(TemporalType.DATE)
 	@Column(name = "COLL_START_DATE")
 	private Date collStartDate;
 
@@ -257,9 +259,9 @@ public class CsmAccount {
 	private Date sysUpdateDate;
 
 	// bi-directional one-to-one association to CsmPayChannel
-	// @OneToOne
-	// @JoinColumn(name = "BAN", referencedColumnName = "BAN")
-	// private CsmPayChannel csmPayChannel;
+	@OneToOne
+	@JoinColumn(name = "BAN", referencedColumnName = "BAN")
+	private CsmPayChannel csmPayChannel;
 
 	public CsmAccount() {
 	}
@@ -848,10 +850,12 @@ public class CsmAccount {
 		this.sysUpdateDate = sysUpdateDate;
 	}
 
-	/*
-	 * public CsmPayChannel getCsmPayChannel() { return this.csmPayChannel; }
-	 * 
-	 * public void setCsmPayChannel(CsmPayChannel csmPayChannel) {
-	 * this.csmPayChannel = csmPayChannel; }
-	 */
+	public CsmPayChannel getCsmPayChannel() {
+		return this.csmPayChannel;
+	}
+
+	public void setCsmPayChannel(CsmPayChannel csmPayChannel) {
+		this.csmPayChannel = csmPayChannel;
+	}
+
 }

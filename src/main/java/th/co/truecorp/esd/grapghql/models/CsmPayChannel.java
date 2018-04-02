@@ -34,8 +34,12 @@ public class CsmPayChannel {
 	@Column(name="BANK_CODE")
 	private String bankCode;
 
-	//private BigDecimal ben;
+	@Column(name="BEN")
+	private String ben;
 
+	@Column(name="BAN")
+	private String ban;
+	
 	@Column(name="BEN_NUMBER")
 	private BigDecimal benNumber;
 
@@ -438,6 +442,22 @@ public class CsmPayChannel {
 
 	public void setSysUpdateDate(Date sysUpdateDate) {
 		this.sysUpdateDate = sysUpdateDate;
+	}
+
+	public String getBen() {
+		return ben;
+	}
+
+	public void setBen(String ben) {
+		this.ben = ben;
+	}
+
+	public String getBan() {
+		return ban;
+	}
+
+	public void setBan(String ban) {
+		this.ban = ban;
 	}
 
 	/*

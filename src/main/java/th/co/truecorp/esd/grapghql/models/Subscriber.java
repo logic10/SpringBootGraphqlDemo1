@@ -208,7 +208,7 @@ public class Subscriber {
 	@Column(name = "L9_TRUE_LIFE_ID")
 	private String l9TrueLifeId;
 
-	@Column(name = "\"LANGUAGE\"")
+	@Column(name = "LANGUAGE")
 	private String language;
 
 	@Column(name = "LINK_NEXT_SUB_NO")
