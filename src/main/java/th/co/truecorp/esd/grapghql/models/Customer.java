@@ -5,32 +5,16 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-
 
 @Entity
 @Table(name = "CUSTOMER")
 public class Customer {
-	/*
-	 * @Id
-	 * 
-	 * @Column(name = "CUSTOMER_ID") private int customerid;
-	 * 
-	 * @Column(name = "OPERATOR_ID") private int operatorid;
-	 * 
-	 * public int getOperatorid() { return operatorid; }
-	 * 
-	 * public void setOperatorid(int operatorid) { this.operatorid = operatorid; }
-	 * 
-	 * public int getCustomerid() { return customerid; }
-	 * 
-	 * public void setCustomerid(int customerid) { this.customerid = customerid; }
-	 * 
-	 * public Customer(){}
-	 * 
-	 */
 
 	@Column(name = "ANNIVERSARY_END_DAY")
 	private BigDecimal anniversaryEndDay;
@@ -255,10 +239,9 @@ public class Customer {
 	@Column(name = "SYS_UPDATE_DATE")
 	private String sysUpdateDate;
 
-	@javax.persistence.OneToMany
-	(mappedBy="customer")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="customer")
 	private List<Subscriber> subscribers;
-	
+
 	public Customer() {
 	}
 
@@ -831,11 +814,11 @@ public class Customer {
 	}
 
 	public List<Subscriber> getSubscribers() {
-		return this.subscribers;
+		return subscribers;
 	}
 
 	public void setSubscribers(List<Subscriber> subscribers) {
 		this.subscribers = subscribers;
-	}	
-	
+	}
+
 }

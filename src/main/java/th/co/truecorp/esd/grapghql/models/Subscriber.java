@@ -5,10 +5,13 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.google.common.base.Supplier;
 
 @Entity
 @Table(name = "SUBSCRIBER")
@@ -266,7 +269,6 @@ public class Subscriber {
 	@Column(name = "SUBSCRIBER_NO")
 	private int subscriberNo;
 
-	
 	@Column(name = "SUBSCRIBER_TYPE")
 	private String subscriberType;
 
@@ -282,8 +284,9 @@ public class Subscriber {
 	private BigDecimal trxId;
 
 	// bi-directional many-to-one association to Customer
+	//@OneToMany(fetch = FetchType.EAGER, mappedBy = "customer")
 	@ManyToOne
-	@JoinColumn(name="CUSTOMER_ID")
+	@JoinColumn(name = "CUSTOMER_ID")
 	private Customer customer;
 
 	public String getApplicationId() {
@@ -950,11 +953,15 @@ public class Subscriber {
 		this.trxId = trxId;
 	}
 
-	/*
-	 * public Customer getCustomer() { return this.customer; }
-	 * 
-	 * public void setCustomer(Customer customer) { this.customer = customer; }
-	 */
+	public Customer getCustomer() {
+		
+		return this.customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
 	public Subscriber() {
 	}
 }

@@ -18,7 +18,6 @@ public class FindByOperatorIdResolver implements DataFetcher<List<Customer>>{
 	
 	@Override
 	public List<Customer> get(DataFetchingEnvironment environment) {
-		// TODO Auto-generated method stub
 		int operatorId = environment.getArgument("operatorId");
         return customerRepository.findByOperatorId(operatorId);
 	}

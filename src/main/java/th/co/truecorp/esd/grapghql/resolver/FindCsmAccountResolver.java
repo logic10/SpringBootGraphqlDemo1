@@ -11,7 +11,7 @@ import th.co.truecorp.esd.grapghql.models.CsmAccount;
 import th.co.truecorp.esd.grapghql.repositories.CsmAccountRepository;
 
 @Component
-public class FindAsmAccountResolver implements DataFetcher<List<CsmAccount>> {
+public class FindCsmAccountResolver implements DataFetcher<List<CsmAccount>> {
 
 	@Autowired
 	private CsmAccountRepository csmAccountRepo;
@@ -19,6 +19,7 @@ public class FindAsmAccountResolver implements DataFetcher<List<CsmAccount>> {
 	@Override
 	public List<CsmAccount> get(DataFetchingEnvironment environment) {
 		String csmAccountId = environment.getArgument("csmAccountId");
+		
 		return csmAccountRepo.findByCustomerId(csmAccountId);
 	}
 
