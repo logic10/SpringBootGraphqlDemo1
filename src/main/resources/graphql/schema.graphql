@@ -1,5 +1,7 @@
 schema {
  query : Query
+ 
+ mutation: Mutation
 }
 
 type Query {
@@ -21,6 +23,86 @@ type Query {
     
     findChargeDistributeByTrackingId(id: String): [ChargeDistribute]
     
+}
+
+type Mutation{
+	createCustomer(input: CustomerInput!): Customer
+}
+
+input CustomerInput {
+	anniversaryEndDay: Int
+	applicationId: String
+	assistantUserId: Int
+	billCycProdFreq: Int
+	billCycle: Int
+	businessEntityId: Int
+	chNodeId: Int
+	chgCycReqDate: String
+	chgCycleInd: String
+	chgCycleReqSts: String
+	convRunNo: Int
+	creditClass: String
+	custSubType: String
+	customerType: String
+	dealerCode: String
+	dfltPostPcn: Int
+	dfltPrePcn: Int
+	dlServiceCode: String
+	dlUpdateStamp: Int
+	effectiveDate: String
+	entityLockType: String
+	expirationDate: String
+	externalId: String
+	financialLockType: String
+	l3AlarmNofifType: String
+	l3AlarmNotifThreshold: Int
+	l3CrdLmtThreshold: Int
+	l3CreditLimitInd: String
+	l9BirthDate: String
+	l9BlacklistInd: String
+	l9BusinessType: String
+	l9ContactLang: String
+	l9Education: String
+	l9EmployeeCode: String
+	l9EmploymentStatus: String
+	l9Grading: String
+	l9Identification: String
+	l9IdentificationExpDate: String
+	l9IdentificationType: String
+	l9IndustryType: String
+	l9InitTimeInAdd: String
+	l9JobType: String
+	l9Nationality: String
+	l9NoOfEmployees: String
+	l9Occupation: String
+	l9PeriodOfWork: String
+	l9Salary: String
+	l9SystemId: String
+	l9TimeInBusiness: String
+	l9TotalSubscriber: String
+	l9TrueId: String
+	l9UserId: String
+	largeCustInd: String
+	lastActivityCode: String
+	lastActivityReasonCode: String
+	legacyCustNo: String
+	marketingChannel: String
+	newCycProdFreq: String
+	newCycle: String
+	newOnlinePartitionId: String
+	offerCurrency: String
+	onlinePartitionId: String
+	newPartitionId: String
+	openDate: String
+	partitionId: Int
+	resourcePool: String
+	spcMemoInd: String
+	sysCreationDate: String
+	sysUpdateDate: String
+	# This custormer identification  
+	customerId	:	Int
+	# This operator identification 
+	operatorId	:	Int
 }
 
 type Customer {
@@ -87,9 +169,7 @@ type Customer {
 	newPartitionId: String
 	offerCurrency: String
 	onlinePartitionId: String
-	newPartitionId: String
 	offerCurrency: String
-	onlinePartitionId: String
 	openDate: String
 	partitionId: Int
 	resourcePool: String
