@@ -77,7 +77,7 @@ public class GraphQLService {
 		
 		dataFetcherMap.put("findBySubscriberId", findBySubscriberId);
 		
-		//dataFetcherMap.put("findBanId", csmAccountResolver);
+		dataFetcherMap.put("findCsmAccountByBan", csmAccountResolver);
 		//csmAccountResolver
 		return dataFetcherMap;
 	}

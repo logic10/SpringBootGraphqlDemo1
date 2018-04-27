@@ -15,7 +15,7 @@ type Query {
     
     findChargeDistributeById(charge_distributeId: Int): [ChargeDistribute]
     
-    
+    findCsmAccountByBan(banNo: String): [CsmAccount]
     
     findCsmPayChannelId(csmPayChannelId: Int): [CsmPayChannel]
     
@@ -289,6 +289,8 @@ type CsmAccount {
 	sysUpdateDate: String
 	
 	csmPayChannel: CsmPayChannel
+	
+	customer: Customer
 }
 
 type CsmPayChannel {

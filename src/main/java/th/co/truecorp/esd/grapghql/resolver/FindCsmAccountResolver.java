@@ -25,8 +25,8 @@ public class FindCsmAccountResolver implements DataFetcher<List<CsmAccount>> {
 */
 
 	@Override
-	public List<CsmAccount> get(DataFetchingEnvironment arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CsmAccount> get(DataFetchingEnvironment environment) {
+		String banNo = environment.getArgument("banNo");
+		return csmAccountRepo.findCsmAccountByBan(banNo);
 	}
 }
