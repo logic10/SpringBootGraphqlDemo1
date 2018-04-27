@@ -15,7 +15,7 @@ public class ChargeDistribute {
 
 	@Column(name="AGR_LEVEL")
 	private String agrLevel;
-
+	
 	@Column(name="AGREEMENT_NO")
 	private BigDecimal agreementNo;
 
@@ -75,6 +75,7 @@ public class ChargeDistribute {
 	@Column(name="SYS_UPDATE_DATE")
 	private Date sysUpdateDate;
 
+	
 	@Column(name="TARGET_PCN")
 	private BigDecimal targetPcn;
 

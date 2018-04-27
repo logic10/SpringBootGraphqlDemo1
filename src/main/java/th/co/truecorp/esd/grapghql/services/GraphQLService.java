@@ -22,10 +22,12 @@ import graphql.schema.idl.RuntimeWiring;
 import graphql.schema.idl.SchemaGenerator;
 import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeDefinitionRegistry;
+import th.co.truecorp.esd.grapghql.repositories.CsmAccountRepository;
 import th.co.truecorp.esd.grapghql.resolver.FindByChargeDistibuteIdResolver;
 import th.co.truecorp.esd.grapghql.resolver.FindByCustomerIdResolver;
 import th.co.truecorp.esd.grapghql.resolver.FindByOperatorIdResolver;
 import th.co.truecorp.esd.grapghql.resolver.FindBySubscriberIdResolver;
+import th.co.truecorp.esd.grapghql.resolver.FindCsmAccountResolver;
 
 @Service
 public class GraphQLService {
@@ -43,7 +45,10 @@ public class GraphQLService {
 	
 	@Autowired
 	private FindByChargeDistibuteIdResolver chargeDistibuteIdResolver;
-	//FindBySubscriberIdResolver
+	
+	@Autowired
+	private FindCsmAccountResolver csmAccountResolver;
+	
 	private GraphQL graphQL;
 	private GraphQLSchema graphQLSchema;
 
@@ -61,17 +66,19 @@ public class GraphQLService {
 				.type("Query", typeWiring -> typeWiring.dataFetchers(getdataFunctionFetcher())).build();
 	}
 
+	//Implement for new method
 	private Map<String, DataFetcher> getdataFunctionFetcher() {
 		Map<String, DataFetcher> dataFetcherMap = new HashMap<String, DataFetcher>();
 		dataFetcherMap.put("findByCustomerid", customerResolver);
 		dataFetcherMap.put("findByOperatorid", operatorResolver);
-
-		
-		dataFetcherMap.put("findBySubscriberId", findBySubscriberId);
 		dataFetcherMap.put("findChargeDistributeByTrackingId", chargeDistibuteIdResolver);
 		
 		dataFetcherMap.put("findCsmAccountById", chargeDistibuteIdResolver);
 		
+		dataFetcherMap.put("findBySubscriberId", findBySubscriberId);
+		
+		//dataFetcherMap.put("findBanId", csmAccountResolver);
+		//csmAccountResolver
 		return dataFetcherMap;
 	}
 

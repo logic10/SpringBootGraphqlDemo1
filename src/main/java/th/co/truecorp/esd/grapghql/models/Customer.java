@@ -12,6 +12,11 @@ import javax.persistence.JoinColumns;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+
+
 @Entity
 @Table(name = "CUSTOMER")
 public class Customer {
@@ -239,9 +244,14 @@ public class Customer {
 	@Column(name = "SYS_UPDATE_DATE")
 	private String sysUpdateDate;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="customer")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="customer", targetEntity=Subscriber.class)
+	@Fetch(value = FetchMode.SELECT)
 	private List<Subscriber> subscribers;
-
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="customer", targetEntity=CsmAccount.class)
+	@Fetch(value = FetchMode.SELECT)
+	private List<CsmAccount> csmAccounts;
+	
 	public Customer() {
 	}
 
@@ -819,6 +829,14 @@ public class Customer {
 
 	public void setSubscribers(List<Subscriber> subscribers) {
 		this.subscribers = subscribers;
+	}
+
+	public List<CsmAccount> getCsmAccounts() {
+		return csmAccounts;
+	}
+
+	public void setCsmAccounts(List<CsmAccount> csmAccounts) {
+		this.csmAccounts = csmAccounts;
 	}
 
 }

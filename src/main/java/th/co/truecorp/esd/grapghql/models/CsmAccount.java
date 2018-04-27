@@ -5,8 +5,10 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 /*
@@ -57,7 +59,7 @@ public class CsmAccount {
 	@Column(name = "CONV_RUN_NO")
 	private BigDecimal convRunNo;
 
-	@Id
+	
 	@Column(name = "CUSTOMER_ID")
 	private String customerId;
 
@@ -216,6 +218,7 @@ public class CsmAccount {
 
 	@Column(name = "L9_PRSNL_CREDIT_LIMIT")
 	private BigDecimal l9PrsnlCreditLimit;
+	
 
 	@Column(name = "L9_RELATED_OU")
 	private BigDecimal l9RelatedOu;
@@ -259,10 +262,20 @@ public class CsmAccount {
 	private Date sysUpdateDate;
 
 	// bi-directional one-to-one association to CsmPayChannel
-	@OneToOne
-	@JoinColumn(name = "BAN", referencedColumnName = "BAN")
+	@OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "BAN", insertable= false , updatable=false)
 	private CsmPayChannel csmPayChannel;
+	
+	@Id
+	@Column(name = "BAN")
+	private String ban;
+	
+	@ManyToOne
+	@JoinColumn(name = "CUSTOMER_ID", updatable = false,insertable=false)
+	private Customer customer;
+	
 
+	
 	public CsmAccount() {
 	}
 
@@ -850,12 +863,22 @@ public class CsmAccount {
 		this.sysUpdateDate = sysUpdateDate;
 	}
 
-	public CsmPayChannel getCsmPayChannel() {
-		return this.csmPayChannel;
+	
+
+	public String getBan() {
+		return ban;
 	}
 
-	public void setCsmPayChannel(CsmPayChannel csmPayChannel) {
-		this.csmPayChannel = csmPayChannel;
+	public void setBan(String ban) {
+		this.ban = ban;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 }

@@ -15,12 +15,18 @@ public class FindCsmAccountResolver implements DataFetcher<List<CsmAccount>> {
 
 	@Autowired
 	private CsmAccountRepository csmAccountRepo;
-
+/*
 	@Override
 	public List<CsmAccount> get(DataFetchingEnvironment environment) {
-		String csmAccountId = environment.getArgument("csmAccountId");
+		//String csmbanNo = environment.getArgument("banNo");
 		
-		return csmAccountRepo.findByCustomerId(csmAccountId);
+		//return csmAccountRepo.findBanId(csmbanNo);
 	}
+*/
 
+	@Override
+	public List<CsmAccount> get(DataFetchingEnvironment arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

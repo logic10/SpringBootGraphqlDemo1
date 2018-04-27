@@ -5,6 +5,9 @@ schema {
 type Query {
 	# This find by custormerId 
     findByCustomerid(customerId: Int): [Customer]
+    
+	findByCustomerid(customerId: Int): [Customer]
+	
     # This find by operatorId 
     findByOperatorid(operatorId: Int): [Customer]
     
@@ -12,7 +15,7 @@ type Query {
     
     findChargeDistributeById(charge_distributeId: Int): [ChargeDistribute]
     
-    findCsmAccountById(charge_distributeId: Int): [CsmAccount]
+    
     
     findCsmPayChannelId(csmPayChannelId: Int): [CsmPayChannel]
     
@@ -98,6 +101,7 @@ type Customer {
 	# This operator identification 
 	operatorId	:	Int
 	subscribers: [Subscriber]
+	csmAccounts: [CsmAccount]
 }
 
 type Subscriber {
@@ -283,6 +287,8 @@ type CsmAccount {
 	suspentionType: String
 	sysCreationDate: String
 	sysUpdateDate: String
+	
+	csmPayChannel: CsmPayChannel
 }
 
 type CsmPayChannel {
@@ -322,4 +328,6 @@ type CsmPayChannel {
 	statusDate: String
 	sysCreationDate: String
 	sysUpdateDate: String
+	
+	csmAccount: CsmAccount
 }

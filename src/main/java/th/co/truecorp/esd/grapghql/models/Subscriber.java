@@ -284,9 +284,9 @@ public class Subscriber {
 	private BigDecimal trxId;
 
 	// bi-directional many-to-one association to Customer
-	//@OneToMany(fetch = FetchType.EAGER, mappedBy = "customer")
+	// @OneToMany(fetch = FetchType.EAGER, mappedBy = "customer")
 	@ManyToOne
-	@JoinColumn(name = "CUSTOMER_ID")
+	@JoinColumn(name = "CUSTOMER_ID", updatable = false, insertable = false)
 	private Customer customer;
 
 	public String getApplicationId() {
@@ -954,7 +954,7 @@ public class Subscriber {
 	}
 
 	public Customer getCustomer() {
-		
+
 		return this.customer;
 	}
 

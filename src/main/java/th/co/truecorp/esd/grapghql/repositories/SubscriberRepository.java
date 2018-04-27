@@ -17,6 +17,6 @@ public interface SubscriberRepository extends CrudRepository<Subscriber, Long>  
 	    //List<Subscriber> findByOperatorId(int operatorid);
 	    //Customer save(Customer item);
 	    //void delete(Long id);
-	    
+
 }
 

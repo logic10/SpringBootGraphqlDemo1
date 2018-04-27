@@ -22,7 +22,7 @@ public class FindBySubscriberIdResolver implements DataFetcher<List<Subscriber>>
 	public List<Subscriber> get(DataFetchingEnvironment environment) {
 		Integer subscriber_id = Integer.parseInt( environment.getArgument("subscriber_id") );
 		
-		
+		System.out.println("findBySubscriberNo: " +subscriber_id);
         return subscriberRepository.findBySubscriberNo(subscriber_id);
 	}
 

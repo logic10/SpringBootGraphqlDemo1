@@ -5,7 +5,10 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /*
@@ -59,9 +62,9 @@ public class CsmPayChannel {
 	@Column(name="CREDIT_CARD_TYPE")
 	private String creditCardType;
 
-	@Id
+	
 	@Column(name="CUSTOMER_ID")
-	private BigDecimal customerId;
+	private int customerId;
 
 	@Column(name="DL_SERVICE_CODE")
 	private String dlServiceCode;
@@ -114,8 +117,9 @@ public class CsmPayChannel {
 	@Column(name="PIN_NUMBER")
 	private String pinNumber;
 
+	@Id
 	@Column(name="PYM_CHANNEL_NO")
-	private BigDecimal pymChannelNo;
+	private String pymChannelNo;
 
 	@Column(name="PYM_OWNER_DET")
 	private String pymOwnerDet;
@@ -145,6 +149,11 @@ public class CsmPayChannel {
 	//@OneToOne(mappedBy="csmPayChannel")
 	//private CsmAccount csmAccount;
 
+	@OneToOne(fetch = FetchType.LAZY )
+    @JoinColumn(name = "BAN", insertable= false , updatable=false)
+	private CsmAccount csmAccount;
+	
+	
 	public CsmPayChannel() {
 	}
 
@@ -244,11 +253,11 @@ public class CsmPayChannel {
 		this.creditCardType = creditCardType;
 	}
 
-	public BigDecimal getCustomerId() {
+	public int getCustomerId() {
 		return this.customerId;
 	}
 
-	public void setCustomerId(BigDecimal customerId) {
+	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
 	}
 
@@ -380,11 +389,11 @@ public class CsmPayChannel {
 		this.pinNumber = pinNumber;
 	}
 
-	public BigDecimal getPymChannelNo() {
+	public String getPymChannelNo() {
 		return this.pymChannelNo;
 	}
 
-	public void setPymChannelNo(BigDecimal pymChannelNo) {
+	public void setPymChannelNo(String pymChannelNo) {
 		this.pymChannelNo = pymChannelNo;
 	}
 
@@ -460,13 +469,6 @@ public class CsmPayChannel {
 		this.ban = ban;
 	}
 
-	/*
-	public CsmAccount getCsmAccount() {
-		return this.csmAccount;
-	}
-
-	public void setCsmAccount(CsmAccount csmAccount) {
-		this.csmAccount = csmAccount;
-	}
-	*/
+	
+	
 }
