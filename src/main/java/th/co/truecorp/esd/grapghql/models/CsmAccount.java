@@ -60,8 +60,8 @@ public class CsmAccount {
 	private BigDecimal convRunNo;
 
 	
-	@Column(name = "CUSTOMER_ID")
-	private String customerId;
+	//@Column(name = "CUSTOMER_ID")
+	//private String customerId;
 
 	@Column(name = "DL_SERVICE_CODE")
 	private String dlServiceCode;
@@ -374,7 +374,7 @@ public class CsmAccount {
 	public void setConvRunNo(BigDecimal convRunNo) {
 		this.convRunNo = convRunNo;
 	}
-
+/*
 	public String getCustomerId() {
 		return this.customerId;
 	}
@@ -382,6 +382,7 @@ public class CsmAccount {
 	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
 	}
+	*/
 
 	public String getDlServiceCode() {
 		return this.dlServiceCode;

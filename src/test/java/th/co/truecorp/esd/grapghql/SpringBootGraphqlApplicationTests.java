@@ -1,3 +1,4 @@
+/*
 package th.co.truecorp.esd.grapghql;
 
 import org.junit.Test;
@@ -14,3 +15,4 @@ public class SpringBootGraphqlApplicationTests {
 	}
 
 }
+*/

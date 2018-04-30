@@ -14,7 +14,8 @@ public interface SubscriberRepository extends CrudRepository<Subscriber, Long>  
 	    //List<Customer> findAll();
 	    //getSubscriberNo > findBySubscriberNo > findBy+SubscriberNo
 	    List<Subscriber> findBySubscriberNo(int subscriberId);
-	    //List<Subscriber> findByOperatorId(int operatorid);
+	    List<Subscriber> findBySubStatus(String subStatus);
+	    List<Subscriber> findByPrimResourceVal(String primResourceVal);
 	    //Customer save(Customer item);
 	    //void delete(Long id);
 

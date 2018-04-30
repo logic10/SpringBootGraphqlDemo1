@@ -5,11 +5,12 @@ schema {
 }
 
 type Query {
+	searchCustomerInfo(filter: CustomerFilter): [Customer]
+	
+	
 	# This find by custormerId 
     findByCustomerid(customerId: Int): [Customer]
     
-	findByCustomerid(customerId: Int): [Customer]
-	
     # This find by operatorId 
     findByOperatorid(operatorId: Int): [Customer]
     
@@ -28,6 +29,18 @@ type Query {
 type Mutation{
 	createCustomer(input: CustomerInput!): Customer
 }
+
+input CustomerFilter{
+	customerId: Int
+	operatorId: Int
+	
+	identification: String
+	msisdn: String
+	ban: String
+	customerType: String
+	substatus: String
+}
+
 
 input CustomerInput {
 	anniversaryEndDay: Int

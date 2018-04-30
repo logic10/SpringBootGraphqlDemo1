@@ -28,6 +28,7 @@ import th.co.truecorp.esd.grapghql.resolver.FindByCustomerIdResolver;
 import th.co.truecorp.esd.grapghql.resolver.FindByOperatorIdResolver;
 import th.co.truecorp.esd.grapghql.resolver.FindBySubscriberIdResolver;
 import th.co.truecorp.esd.grapghql.resolver.FindCsmAccountResolver;
+import th.co.truecorp.esd.grapghql.resolver.SearchCustomerResolver;
 
 @Service
 public class GraphQLService {
@@ -48,6 +49,9 @@ public class GraphQLService {
 	
 	@Autowired
 	private FindCsmAccountResolver csmAccountResolver;
+	
+	@Autowired
+	private SearchCustomerResolver searchCustomerResolver;
 	
 	private GraphQL graphQL;
 	private GraphQLSchema graphQLSchema;
@@ -78,6 +82,9 @@ public class GraphQLService {
 		dataFetcherMap.put("findBySubscriberId", findBySubscriberId);
 		
 		dataFetcherMap.put("findCsmAccountByBan", csmAccountResolver);
+		
+		dataFetcherMap.put("searchCustomerInfo", searchCustomerResolver);
+		
 		//csmAccountResolver
 		return dataFetcherMap;
 	}
