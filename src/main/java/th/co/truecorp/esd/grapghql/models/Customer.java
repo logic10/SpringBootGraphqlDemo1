@@ -3,14 +3,7 @@ package th.co.truecorp.esd.grapghql.models;
 import java.math.BigDecimal;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -244,11 +237,11 @@ public class Customer {
 	@Column(name = "SYS_UPDATE_DATE")
 	private String sysUpdateDate;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="customer", targetEntity=Subscriber.class)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="customer", targetEntity=Subscriber.class, cascade = CascadeType.ALL)
 	@Fetch(value = FetchMode.SELECT)
 	private List<Subscriber> subscribers;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="customer", targetEntity=CsmAccount.class)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="customer", targetEntity=CsmAccount.class, cascade = CascadeType.ALL)
 	@Fetch(value = FetchMode.SELECT)
 	private List<CsmAccount> csmAccounts;
 	

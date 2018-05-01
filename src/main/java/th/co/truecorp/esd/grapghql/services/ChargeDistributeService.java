@@ -17,6 +17,10 @@ public class ChargeDistributeService {
     }
 
     public ChargeDistribute findByTrxId(Long trxId) {
-        return chargeDistributeRepository.findOne(trxId);
+        return chargeDistributeRepository.findOne(String.valueOf(trxId));
+    }
+
+    public ChargeDistribute save(ChargeDistribute chargeDistribute) {
+        return chargeDistributeRepository.save(chargeDistribute);
     }
 }

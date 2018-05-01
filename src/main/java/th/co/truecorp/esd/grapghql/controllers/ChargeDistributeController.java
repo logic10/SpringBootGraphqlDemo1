@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import th.co.truecorp.esd.grapghql.models.ChargeDistribute;
 import th.co.truecorp.esd.grapghql.services.ChargeDistributeService;
 
-import java.util.List;
 
 @Controller
 @RequestMapping(RestConstant.CHARGEDISTRIBUTE_V1)
@@ -21,12 +20,20 @@ public class ChargeDistributeController {
     ChargeDistributeService chargeDistributeService;
 
     @RequestMapping(
-            value = "/",
-            method = {RequestMethod.POST,RequestMethod.GET},
+            method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<List<ChargeDistribute>> chargeDistribute(@RequestBody ChargeDistribute req) {
-        List<ChargeDistribute> chargeDistributeResponse = chargeDistributeService.findAll();
+    public ResponseEntity<ChargeDistribute> save(@RequestBody ChargeDistribute req) {
+        return new ResponseEntity<>(chargeDistributeService.save(req), HttpStatus.CREATED);
+    }
+
+    @RequestMapping(
+            value = "/",
+            method = {RequestMethod.POST},
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<Iterable<ChargeDistribute>> findAll(@RequestBody ChargeDistribute req) {
+        Iterable<ChargeDistribute> chargeDistributeResponse = chargeDistributeService.findAll();
         return new ResponseEntity<>(chargeDistributeResponse, HttpStatus.CREATED);
     }
 
@@ -35,7 +42,7 @@ public class ChargeDistributeController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<ChargeDistribute> chargeDistribute(@PathVariable long trxId) {
+    public ResponseEntity<ChargeDistribute> findByTrxId(@PathVariable long trxId) {
         ChargeDistribute chargeDistributeResponse = chargeDistributeService.findByTrxId(trxId);
         return new ResponseEntity<>(chargeDistributeResponse, HttpStatus.CREATED);
     }

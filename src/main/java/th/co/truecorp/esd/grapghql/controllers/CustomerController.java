@@ -1,27 +1,47 @@
 package th.co.truecorp.esd.grapghql.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RequestMapping;
 import th.co.truecorp.esd.grapghql.models.Customer;
-import th.co.truecorp.esd.grapghql.repositories.CustomerRepository;
+import th.co.truecorp.esd.grapghql.services.CustomerService;
 
 @Controller
 @RequestMapping(RestConstant.CUSTOMER_V1)
 public class CustomerController {
 	
 	@Autowired
-    private CustomerRepository customerRepository;
+    private CustomerService customerService;
 
-	@GetMapping("/customer/{id}")
-	ResponseEntity<List<Customer>> getCustomer(@PathVariable("id") int id) {
-        return new ResponseEntity<List<Customer>>(customerRepository.findByCustomerId(id), HttpStatus.OK);
+    @RequestMapping(
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<Customer> save(@RequestBody Customer req) {
+        return new ResponseEntity<>(customerService.save(req), HttpStatus.CREATED);
+    }
+
+    @RequestMapping(
+            value = "/",
+            method = {RequestMethod.POST},
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<Iterable<Customer>> findAll(@RequestBody Customer req) {
+        Iterable<Customer> chargeDistributeResponse = customerService.findAll(req);
+        return new ResponseEntity<>(chargeDistributeResponse, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(
+            value = "/{customerId}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<Customer> findByCustomerId(@PathVariable Integer customerId) {
+        Customer chargeDistributeResponse = customerService.findByCustomerId(customerId);
+        return new ResponseEntity<>(chargeDistributeResponse, HttpStatus.CREATED);
     }
 }

@@ -9,7 +9,7 @@ import th.co.truecorp.esd.grapghql.models.Subscriber;
 
 
 @Repository
-public interface SubscriberRepository extends CrudRepository<Subscriber, Long>  {
+public interface SubscriberRepository extends CrudRepository<Subscriber, Integer>  {
 	    //Customer findOne(Long id);
 	    //List<Customer> findAll();
 	    //getSubscriberNo > findBySubscriberNo > findBy+SubscriberNo

@@ -10,6 +10,6 @@ import th.co.truecorp.esd.grapghql.models.ChargeDistribute;
 
 
 @Repository
-public interface ChargeDistributeRepository extends CrudRepository<ChargeDistribute, Long>  {
+public interface ChargeDistributeRepository extends CrudRepository<ChargeDistribute, String>  {
 	List<ChargeDistribute> findByTrxId(String id);
 }
