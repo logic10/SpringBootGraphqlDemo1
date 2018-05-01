@@ -1,5 +1,6 @@
 package th.co.truecorp.esd.grapghql.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -270,7 +271,7 @@ public class CsmAccount {
     @Column(name = "BAN")
     private String ban;
 
-
+    @JsonIgnore
     @ManyToOne(optional = false, targetEntity = Customer.class)
     @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "CUSTOMER_ID", updatable = false, insertable = false)
     private Customer customer;
