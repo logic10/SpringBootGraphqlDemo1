@@ -241,11 +241,11 @@ public class Customer {
     @Column(name = "SYS_UPDATE_DATE")
     private String sysUpdateDate;
 
-    @OneToMany(targetEntity = Subscriber.class, mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, targetEntity = Subscriber.class, mappedBy = "customer", cascade = CascadeType.ALL)
     @Fetch(value = FetchMode.SELECT)
     private List<Subscriber> subscribers;
 
-    @OneToMany(targetEntity = CsmAccount.class, mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, targetEntity = CsmAccount.class, mappedBy = "customer", cascade = CascadeType.ALL)
     @Fetch(value = FetchMode.SELECT)
     private List<CsmAccount> csmAccounts;
 
