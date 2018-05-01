@@ -269,8 +269,8 @@ public class CsmAccount {
 	@Id
 	@Column(name = "BAN")
 	private String ban;
-	
-	@ManyToOne
+
+	@ManyToOne(optional = false, targetEntity = Customer.class)
 	@JoinColumn(name = "CUSTOMER_ID", updatable = false,insertable=false)
 	private Customer customer;
 	

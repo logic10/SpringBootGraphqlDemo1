@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import th.co.truecorp.esd.grapghql.models.Customer;
 import th.co.truecorp.esd.grapghql.repositories.CustomerRepository;
+import th.co.truecorp.esd.grapghql.repositories.CustomerSpecification;
 
 @Service
 public class CustomerService {
@@ -11,7 +12,8 @@ public class CustomerService {
     CustomerRepository customerRepository;
 
     public Customer save(Customer customer) {
-        return customerRepository.save(customer);
+        Customer customerSaved = customerRepository.save(customer);
+        return customerSaved;
     }
 
     public Customer findByCustomerId(Integer customerId) {
@@ -19,6 +21,6 @@ public class CustomerService {
     }
 
     public Iterable<Customer> findAll(Customer customer) {
-        return customerRepository.findAll();
+        return customerRepository.findAll(CustomerSpecification.searchAll(customer));
     }
 }

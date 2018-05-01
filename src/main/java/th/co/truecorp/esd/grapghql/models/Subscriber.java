@@ -285,7 +285,7 @@ public class Subscriber {
 
 	// bi-directional many-to-one association to Customer
 	// @OneToMany(fetch = FetchType.EAGER, mappedBy = "customer")
-	@ManyToOne
+	@ManyToOne(optional = false, targetEntity = Customer.class)
 	@JoinColumn(name = "CUSTOMER_ID", updatable = false, insertable = false)
 	private Customer customer;
 
