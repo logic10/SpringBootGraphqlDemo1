@@ -12,8 +12,7 @@ public class CustomerService {
     CustomerRepository customerRepository;
 
     public Customer save(Customer customer) {
-        Customer customerSaved = customerRepository.save(customer);
-        return customerSaved;
+        return customerRepository.save(customer);
     }
 
     public Customer findByCustomerId(Integer customerId) {

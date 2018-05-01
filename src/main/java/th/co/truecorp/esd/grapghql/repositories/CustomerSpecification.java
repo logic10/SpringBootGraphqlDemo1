@@ -14,14 +14,14 @@ public class CustomerSpecification {
     public static Specification<Customer> searchAll(Customer req) {
         return (root, criteriaQuery, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
-            criteriaBuilder.equal(root.get(Customer_.customerId), req.getCustomerId());
+            if (!StringUtils.isEmpty(req.getCustomerId())) {
+                criteriaBuilder.equal(root.get(Customer_.customerId), req.getCustomerId());
+            }
             if (!StringUtils.isEmpty(req.getCustomerType())) {
                 predicates.add(
                         criteriaBuilder.like(root.get(Customer_.customerType), req.getCustomerType())
                 );
             }
-            root.join(Customer_.subscribers, JoinType.LEFT);
-            root.join(Customer_.csmAccounts, JoinType.LEFT);
             return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
         };
     }
