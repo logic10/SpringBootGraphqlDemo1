@@ -9,10 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import org.springframework.web.bind.annotation.RequestMapping;
 import th.co.truecorp.esd.grapghql.models.Customer;
 import th.co.truecorp.esd.grapghql.repositories.CustomerRepository;
 
 @Controller
+@RequestMapping(RestConstant.CUSTOMER_V1)
 public class CustomerController {
 	
 	@Autowired
