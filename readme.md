@@ -71,3 +71,71 @@ mutation updateCustomer($input: CustomerInput!){
            }
 }
 ############################
+
+
+Version Ten.1
+query searchCustomer($input: CustomerFilter!, 
+  $inputbycustomerid: CustomerFilter!,
+  $inputbycertificatedid: CustomerFilter!,
+  $inputbyban: CustomerFilter!) {
+    
+  searchCustomerByCusttypeAndCert: searchCustomer(filter: $input) {
+    customerId
+    operatorId
+    subscribers {
+      subSeqNo
+      operatorId
+    }
+  }
+  searchCustomerByCustomerAndSubStatus: searchCustomer(filter: $inputbycustomerid) {
+    customerId
+    operatorId
+    csmAccounts{
+      ban
+      collStatus
+    }
+    subscribers {
+      subSeqNo
+      operatorId
+    }
+  }
+  searchCustomerByCertificate: searchCustomer(filter: $inputbycertificatedid) {
+    customerId
+    operatorId
+    
+    subscribers {
+      subSeqNo
+      operatorId
+    }
+  }
+    searchCustomerByBan: searchCustomer(filter: $inputbyban) {
+    customerId
+    operatorId
+    subscribers {
+      subSeqNo
+      operatorId
+    }
+  }
+}
+
+Query Valiable
+
+{
+  "input" : {
+                "customerType": "I"
+               ,"certification":"3700800531726"
+    
+  },
+  "inputbycustomerid": {
+    "customerId": 84862
+  },
+  "inputbycertificatedid": {
+    "certification": "3700800531726"
+  },
+  "inputbyban": {
+    "ban": "10102436"
+  }
+}
+
+
+
