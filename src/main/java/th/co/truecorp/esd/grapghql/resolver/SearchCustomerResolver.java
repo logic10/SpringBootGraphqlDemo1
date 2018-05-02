@@ -37,21 +37,27 @@ public class SearchCustomerResolver implements DataFetcher<List<Customer>> {
     public List<Customer> get(DataFetchingEnvironment environment) {
         //LinkedHashMap link = environment.getArgument("filter");
         Object rawInput = environment.getArgument("filter");
+
         CustomerFilter customerinput = objectMapper.convertValue(rawInput, CustomerFilter.class);
 
+        System.out.println("certification-------->"+ customerinput.getCertification());
         if (customerinput != null && customerinput.getCustomerId() != 0) {
+            System.out.print("getCustomerId:");
             int customer_id = customerinput.getCustomerId();
             return customerRepository.findByCustomerId(customer_id);
         } else if (customerinput != null && customerinput.getOperatorId() != 0) {
+            System.out.print("getOperatorId:");
             int oper_id = (Integer) customerinput.getOperatorId();
             return customerRepository.findByOperatorId(oper_id);
         } else if (customerinput != null
-                && !customerinput.getCertification().equals("")
-                && !customerinput.getCustomerType().equals("")) {
+                && !validateNull(customerinput.getCertification()).equals("")
+                && !validateNull(customerinput.getCustomerType()).equals("")) {
+            System.out.print("getCertification getCustomerType :");
             String certification = customerinput.getCertification();
             String customerType = customerinput.getCustomerType();
             return customerRepository.findByCustomerTypeAndL9Identification(customerType, certification);
-        } else if (customerinput != null && !customerinput.getPrimResourceVal().equals("")) {
+        } else if (customerinput != null && !validateNull(customerinput.getPrimResourceVal()).equals("")) {
+            System.out.print("getPrimResourceVal:");
             String primResourceVal = customerinput.getPrimResourceVal();
             List<Customer> custList = new ArrayList<Customer>();
             List<Subscriber> subList = subscriberRepository.findByPrimResourceVal(primResourceVal);
@@ -61,7 +67,15 @@ public class SearchCustomerResolver implements DataFetcher<List<Customer>> {
                 custList.addAll(customerRepository.findByCustomerId(cus_id));
             }
             return custList;
-        } else if (customerinput != null && !customerinput.getBan().equals("")) {
+        } else if (customerinput != null
+                && !validateNull(customerinput.getCertification()).equals("")) {
+            System.out.println("getCertification:");
+            String certification = customerinput.getCertification();
+
+            System.out.print("certification:"+ certification);
+            return customerRepository.findByl9Identification(certification);
+        } else if (customerinput != null && !validateNull(customerinput.getBan()).equals("")) {
+            System.out.print("getBan:");
             String banNo = customerinput.getBan();
             List<Customer> custList = new ArrayList<Customer>();
             List<CsmAccount> csmBans = csmAccountRepository.findCsmAccountByBan(banNo);
@@ -72,8 +86,17 @@ public class SearchCustomerResolver implements DataFetcher<List<Customer>> {
             }
             return custList;
         }
+        System.out.print("null value:");
         return null;
 
     }
+
+
+    public static String validateNull(String input)
+    {
+        return (input == null) ? "" : (String) input;
+    }
+
+
 
 }

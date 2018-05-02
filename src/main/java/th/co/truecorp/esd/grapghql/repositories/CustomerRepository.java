@@ -13,8 +13,10 @@ public interface CustomerRepository extends CrudRepository<Customer, Integer>, J
     List<Customer> findAll();
 
     List<Customer> findByCustomerId(int customerid);
-
+    // sql  AND OR
     List<Customer> findByCustomerTypeAndL9Identification(String customerType,String l9Identification);
+
+    List<Customer> findByCustomerTypeOrL9Identification(String customerType,String l9Identification);
 
     List<Customer> findByOperatorId(int operatorid);
 

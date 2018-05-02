@@ -28,6 +28,7 @@ public class UpdateCustomerResolver implements DataFetcher<Customer>{
 		Customer customer = objectMapper.convertValue(rawInput, Customer.class);
 		System.out.println("customer:"+customer.getCustomerId());
 		//return customer;
+
 		return customerRepository.save(customer);
 	}
 

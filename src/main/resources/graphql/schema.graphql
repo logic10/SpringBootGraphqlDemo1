@@ -280,6 +280,7 @@ type Customer {
 	# This operator identification
 	operatorId	:	Int
 	subscribers: [Subscriber]
+	csmAccounts: [CsmAccount]
 }
 
 type Subscriber {
@@ -392,6 +393,7 @@ type ChargeDistribute {
 }
 
 type CsmAccount {
+    ban: String
 	acctBalPolicy: String
 	applicationId: String
 	billingCurrency: String
@@ -465,6 +467,8 @@ type CsmAccount {
 	suspentionType: String
 	sysCreationDate: String
 	sysUpdateDate: String
+
+	#csmPayChannel: CsmPayChannel
 }
 
 type CsmPayChannel {
