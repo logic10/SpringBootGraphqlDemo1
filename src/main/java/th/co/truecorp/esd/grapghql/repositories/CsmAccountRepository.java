@@ -12,5 +12,5 @@ public interface CsmAccountRepository extends CrudRepository<CsmAccount, String>
 
 	//List<CsmAccount> findByCustomerId(String csmAccountId);
 	
-	List<CsmAccount> findCsmAccountByBan(String banNo);
+	List<CsmAccount> findByBan(String banNo);
 }

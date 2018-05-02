@@ -78,7 +78,7 @@ public class SearchCustomerResolver implements DataFetcher<List<Customer>> {
             System.out.print("getBan:");
             String banNo = customerinput.getBan();
             List<Customer> custList = new ArrayList<Customer>();
-            List<CsmAccount> csmBans = csmAccountRepository.findCsmAccountByBan(banNo);
+            List<CsmAccount> csmBans = csmAccountRepository.findByBan(banNo);
 
             for (int ban = 0; ban < csmBans.size(); ban++) {
                 int cus_id = csmBans.get(ban).getCustomer().getCustomerId();
