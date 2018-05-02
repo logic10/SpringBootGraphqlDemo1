@@ -1,10 +1,32 @@
 package th.co.truecorp.esd.grapghql.models.filter;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class CustomerFilter {
 	
 	private int customerId;
+	private int operatorId;
+	private String certification;
+	private String ban;
+	private String primResourceVal;
+	private String customerType;
+
+
+	public String getBan() {
+		return ban;
+	}
+
+	public void setBan(String ban) {
+		this.ban = ban;
+	}
+
+	public String getPrimResourceVal() {
+		return primResourceVal;
+	}
+
+	public void setPrimResourceVal(String primResourceVal) {
+		this.primResourceVal = primResourceVal;
+	}
+
+
 	public String getCertification() {
 		return certification;
 	}
@@ -21,11 +43,6 @@ public class CustomerFilter {
 		this.customerType = customerType;
 	}
 
-	private int operatorId;
-	private String certification;
-	private String customerType;
-
-	@JsonProperty("customerId")
 	public int getCustomerId() {
 		return customerId;
 	}
