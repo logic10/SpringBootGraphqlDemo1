@@ -30,6 +30,8 @@ input CustomerFilter {
   operatorId: Int
   certification : String
   customerType : String
+  ban :  String
+  primResourceVal : String
 }
 
 type Mutation {
