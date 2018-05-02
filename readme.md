@@ -1,5 +1,7 @@
 Rest.
 http://localhost:8888/swagger-ui.html
+    Example request (post man)
+    https://www.getpostman.com/collections/db6256f521628b519fa6
 
 Graph.
 http://localhost:8888/graphiql
