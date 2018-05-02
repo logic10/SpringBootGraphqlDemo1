@@ -22,13 +22,7 @@ import graphql.schema.idl.RuntimeWiring;
 import graphql.schema.idl.SchemaGenerator;
 import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeDefinitionRegistry;
-import th.co.truecorp.esd.grapghql.repositories.CsmAccountRepository;
-import th.co.truecorp.esd.grapghql.resolver.FindByChargeDistibuteIdResolver;
-import th.co.truecorp.esd.grapghql.resolver.FindByCustomerIdResolver;
-import th.co.truecorp.esd.grapghql.resolver.FindByOperatorIdResolver;
-import th.co.truecorp.esd.grapghql.resolver.FindBySubscriberIdResolver;
-import th.co.truecorp.esd.grapghql.resolver.FindCsmAccountResolver;
-import th.co.truecorp.esd.grapghql.resolver.SearchCustomerResolver;
+import th.co.truecorp.esd.grapghql.resolver.*;
 
 @Service
 public class GraphQLService {
@@ -37,22 +31,26 @@ public class GraphQLService {
 	Resource schemaResource;
 
 	@Autowired
+	private SearchCustomerResolver searchcustomerResolver;
+
+	@Autowired
 	private FindByCustomerIdResolver customerResolver;
 	@Autowired
 	private FindByOperatorIdResolver operatorResolver;
-	
+
 	@Autowired
 	private FindBySubscriberIdResolver findBySubscriberId;
-	
+
 	@Autowired
 	private FindByChargeDistibuteIdResolver chargeDistibuteIdResolver;
-	
+	//FindBySubscriberIdResolver
+
 	@Autowired
-	private FindCsmAccountResolver csmAccountResolver;
-	
+	private CreateCustomerResolver createCustomerResolver;
+
 	@Autowired
-	private SearchCustomerResolver searchCustomerResolver;
-	
+	private UpdateCustomerResolver updateCustomerResolver;
+	////
 	private GraphQL graphQL;
 	private GraphQLSchema graphQLSchema;
 
@@ -67,27 +65,33 @@ public class GraphQLService {
 
 	private RuntimeWiring initWiring() {
 		return RuntimeWiring.newRuntimeWiring()
-				.type("Query", typeWiring -> typeWiring.dataFetchers(getdataFunctionFetcher())).build();
+				.type("Mutation", typeWiring -> typeWiring.dataFetchers(setdataFunctionFetcher()))
+				.type("Query", typeWiring -> typeWiring.dataFetchers(getdataFunctionFetcher()))
+				.build();
 	}
 
-	//Implement for new method
 	private Map<String, DataFetcher> getdataFunctionFetcher() {
 		Map<String, DataFetcher> dataFetcherMap = new HashMap<String, DataFetcher>();
+
 		dataFetcherMap.put("findByCustomerid", customerResolver);
 		dataFetcherMap.put("findByOperatorid", operatorResolver);
-		dataFetcherMap.put("findChargeDistributeByTrackingId", chargeDistibuteIdResolver);
-		
-		dataFetcherMap.put("findCsmAccountById", chargeDistibuteIdResolver);
-		
 		dataFetcherMap.put("findBySubscriberId", findBySubscriberId);
-		
-		dataFetcherMap.put("findCsmAccountByBan", csmAccountResolver);
-		
-		dataFetcherMap.put("searchCustomerInfo", searchCustomerResolver);
-		
-		//csmAccountResolver
+
+		dataFetcherMap.put("findChargeDistributeByTrackingId", chargeDistibuteIdResolver);
+		dataFetcherMap.put("findCsmAccountById", chargeDistibuteIdResolver);
+
+		dataFetcherMap.put("searchCustomer", searchcustomerResolver);
+
 		return dataFetcherMap;
 	}
+
+	private Map<String, DataFetcher> setdataFunctionFetcher() {
+		Map<String, DataFetcher> dataFetcherMap = new HashMap<String, DataFetcher>();
+		dataFetcherMap.put("createCustomer", createCustomerResolver);
+		dataFetcherMap.put("updateCustomer", updateCustomerResolver);
+		return dataFetcherMap;
+	}
+
 
 	public GraphQL getGraphQL() {
 		return graphQL;

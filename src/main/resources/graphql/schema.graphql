@@ -1,49 +1,45 @@
 schema {
  query : Query
- 
- mutation: Mutation
+ mutation : Mutation
 }
 
 type Query {
-	searchCustomerInfo(filter: CustomerFilter): [Customer]
-	
-	
-	# This find by custormerId 
+
+    # This is search customer
+    searchCustomer(filter: CustomerFilter): [Customer]
+
+	# This find by custormerId
     findByCustomerid(customerId: Int): [Customer]
-    
-    # This find by operatorId 
+    # This find by operatorId
     findByOperatorid(operatorId: Int): [Customer]
-    
+
     findBySubscriberId(subscriber_id: String): [Subscriber]
-    
+
     findChargeDistributeById(charge_distributeId: Int): [ChargeDistribute]
-    
-    findCsmAccountByBan(banNo: String): [CsmAccount]
-    
+
+    findCsmAccountById(charge_distributeId: Int): [CsmAccount]
+
     findCsmPayChannelId(csmPayChannelId: Int): [CsmPayChannel]
-    
+
     findChargeDistributeByTrackingId(id: String): [ChargeDistribute]
-    
+
 }
 
-type Mutation{
-	createCustomer(input: CustomerInput!): Customer
+input CustomerFilter {
+  customerId: Int
+  operatorId: Int
+  certification : String
+  customerType : String
 }
 
-input CustomerFilter{
-	customerId: Int
-	operatorId: Int
-	
-	identification: String
-	msisdn: String
-	ban: String
-	customerType: String
-	substatus: String
+type Mutation {
+    # This is search customer
+    createCustomer(customer : CustomerInput!): Customer
+    updateCustomer(customer : CustomerInput!): Customer
 }
-
 
 input CustomerInput {
-	anniversaryEndDay: Int
+    anniversaryEndDay: Int
 	applicationId: String
 	assistantUserId: Int
 	billCycProdFreq: Int
@@ -103,19 +99,106 @@ input CustomerInput {
 	newCycProdFreq: String
 	newCycle: String
 	newOnlinePartitionId: String
+	newPartitionId: String
 	offerCurrency: String
 	onlinePartitionId: String
-	newPartitionId: String
 	openDate: String
 	partitionId: Int
 	resourcePool: String
 	spcMemoInd: String
 	sysCreationDate: String
 	sysUpdateDate: String
-	# This custormer identification  
+	# This custormer identification
 	customerId	:	Int
-	# This operator identification 
+	# This operator identification
 	operatorId	:	Int
+	subscribers: SubscriberInput
+}
+
+input SubscriberInput{
+	applicationId: String
+	businessEntityId: String
+	calcPymCategory: String
+	chNodeId: String
+	convRunNo: String
+	dealerCode: String
+	dlServiceCode: String
+	dlUpdateStamp: String
+	effectiveDate: String
+	expirationDate: String
+	externalId: String
+	initActDate: String
+	initialDlrCode: String
+	insTrxId: String
+	l3FirstRechargeIndicator: String
+	l9AddrBadDebtFlag: String
+	l9AddrFrdFlag: String
+	l9BarByRater: String
+	l9BarringActDate: String
+	l9BarringActRsn: String
+	l9BarringByReq: String
+	l9ColLastActDate: String
+	l9ColRsnCd: String
+	l9ColStatus: String
+	l9ConvergenceCode: String
+	l9CrdLastActDate: String
+	l9CrdLmSubActDate: String
+	l9CrdLmSubRsnCd: String
+	l9CrdRsnCd: String
+	l9CrdStatus: String
+	l9DealerApp: String
+	l9DonorOperator: String
+	l9DonorZone: String
+	l9ImsiAlias: String
+	l9InstallationType: String
+	l9LastActivityId: String
+	l9MarketingCode: String
+	l9MultiSimInd: String
+	l9PhaseCode: String
+	l9PortInd: String
+	l9ProjectCode: String
+	l9ProofDate: String
+	l9ProofDoc: String
+	l9RecOperator: String
+	l9RecZone: String
+	l9RelatedSubscriber: String
+	l9RfActDate: String
+	l9RfBan: String
+	l9RfServiceLevel: String
+	l9RmvActDate: String
+	l9RmvBan: String
+	l9RmvServiceLevel: String
+	l9SaleChannel: String
+	l9SaleId: String
+	l9SmsInd: String
+	l9SmsLanguage: String
+	l9SplitPeriod: String
+	l9TmvActDate: String
+	l9TmvBan: String
+	l9TmvServiceLevel: String
+	l9TrueLifeId: String
+	language: String
+	linkNextSubNo: String
+	linkPrevSubNo: String
+	operatorId: String
+	origActDate: String
+	primResParamCd: String
+	primResourceTp: String
+	primResourceVal: String
+	requiredPartition: String
+	routingPolicyId: String
+	subPassword: String
+	subSeqNo: String
+	subStatus: String
+	subStatusDate: String
+	subStsIssueDate: String
+	subStsLastAct: String
+	subStsRsnCd: String
+	subscriberNo: String
+	subscriberType: String
+	sysCreationDate: String
+	sysUpdateDate: String
+	trxId: String
 }
 
 type Customer {
@@ -183,18 +266,18 @@ type Customer {
 	offerCurrency: String
 	onlinePartitionId: String
 	offerCurrency: String
+	onlinePartitionId: String
 	openDate: String
 	partitionId: Int
 	resourcePool: String
 	spcMemoInd: String
 	sysCreationDate: String
 	sysUpdateDate: String
-	# This custormer identification  
+	# This custormer identification
 	customerId	:	Int
-	# This operator identification 
+	# This operator identification
 	operatorId	:	Int
 	subscribers: [Subscriber]
-	csmAccounts: [CsmAccount]
 }
 
 type Subscriber {
@@ -380,10 +463,6 @@ type CsmAccount {
 	suspentionType: String
 	sysCreationDate: String
 	sysUpdateDate: String
-	
-	csmPayChannel: CsmPayChannel
-	
-	customer: Customer
 }
 
 type CsmPayChannel {
@@ -423,6 +502,4 @@ type CsmPayChannel {
 	statusDate: String
 	sysCreationDate: String
 	sysUpdateDate: String
-	
-	csmAccount: CsmAccount
 }

@@ -14,6 +14,8 @@ public interface CustomerRepository extends CrudRepository<Customer, Integer>, J
 
     List<Customer> findByCustomerId(int customerid);
 
+    List<Customer> findByCustomerTypeAndL9Identification(String customerType,String l9Identification);
+
     List<Customer> findByOperatorId(int operatorid);
 
     List<Customer> findByl9Identification(String identification);
